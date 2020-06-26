@@ -1,13 +1,6 @@
 const express = require("express");
 const router = express.Router();
-var mysql = require("mysql");
-
-var con = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "new",
-});
+const con = require("./ConnectSQL/serverSQL")
 
 router.get("/", (req, res, next) => {
   res.status(200).json({
@@ -42,7 +35,7 @@ router.get("/:id", (req, res, next) => {
   const id = req.params.id;
 
   con.query(
-    "SELECT answer FROM answer INNER JOIN question on question.id_question=answer.id_question where question.id_question=?",
+    "SELECT answer FROM answer INNER JOIN question on question.id_question=answer.id_question where answer.id_question=?",
     id,
     function (err, result) {
       if (err) throw err;
