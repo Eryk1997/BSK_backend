@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
-var mysql = require("mysql");
+const con = require("./ConnectSQL/serverSQL")
+/*var mysql = require("mysql");
 
 var con = mysql.createConnection({
   host: "localhost",
@@ -8,10 +9,11 @@ var con = mysql.createConnection({
   password: "",
   database: "new",
 });
-
+*/
 router.get("/", (req, res, next) => {
-  res.status(200).json({
-    message: "Question were fetched",
+  con.query("select text from question", null, function (err, result) {
+    if (err) throw err;
+    res.send(result);
   });
 });
 
