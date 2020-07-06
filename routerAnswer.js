@@ -50,7 +50,24 @@ router.patch("/:productId", (req, res, next) => {
   });
 });
 
-router.delete("/:productId", (req, res, next) => {
+router.delete("/:id", (req, res, next) => {
+  const id = req.params.id;
+
+  con.query("DELETE FROM `answer` WHERE answer.id_question = ?", id, function (
+    err,
+    result
+  ) {
+    //if (err) throw err;
+    //res.send(result);
+  });
+  con.query("DELETE FROM `question` WHERE question.id_question = ?", id, function (
+    err,
+    result
+  ) {
+    //if (err) throw err;
+    //res.send(result);
+  });
+
   res.status(200).json({
     message: "Deleted product!",
   });
