@@ -6,6 +6,7 @@ const morgan = require("morgan");
 const questionRouter = require("./routerQuestion.js");
 const answerRouter = require("./routerAnswer.js");
 const qa = require('./routerQA')
+const quiz = require('./routerQuiz')
 
 app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -27,6 +28,7 @@ app.use((req, res, next) => {
 app.use("/questions", questionRouter);
 app.use("/answers", answerRouter);
 app.use("/qa", qa)
+app.use("/quiz", quiz)
 
 app.use((req, res, next) => {
   const error = new Error("Not found");

@@ -19,7 +19,7 @@ router.get("/randomId/", (req, res, next) => {
     "SELECT id_question FROM `question` ORDER BY rand() LIMIT 1",
     null,
     function (err, result) {
-      if (err) throw err;
+      //if (err) throw err;
       res.send(result);
     }
   );
